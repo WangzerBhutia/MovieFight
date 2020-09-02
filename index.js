@@ -77,28 +77,28 @@ const runComparison = () => {
     leftSideStats.forEach( (leftStats, index) => {
         const rightStats = rightSideStats[index];
 
-        const leftStatsValue = leftStats.dataset.value;
-        const rightStatsValue = rightStats.dataset.value;
-
+        const leftStatsValue = parseInt(leftStats.dataset.value);
+        const rightStatsValue = parseInt(rightStats.dataset.value);
         if(leftStatsValue > rightStatsValue){
             rightStats.classList.remove('is-primary');
             rightStats.classList.add('is-warning');
+            
         }
         else {
             leftStats.classList.remove('is-primary');
             leftStats.classList.add('is-warning');
         }
+        console.log(leftStatsValue, rightStatsValue)
     });
 };
 
 
 const movieTemplate = (movieDetail) => {
-    // const dollars = parseInt(movieDetail.BoxOffice.replace(/\$/g, '').replace(/,/g, ''));
-    const dollars = parseInt(movieDetail.BoxOffice.slice(1).split(',').join(''));
+    const dollars = parseInt(movieDetail.BoxOffice.replace(/\$/g, '').replace(/,/g, ''));
     const metascore = parseInt(movieDetail.Metascore);
     const imdbRating = parseInt(movieDetail.imdbRating);
     const imdbVotes = parseInt(movieDetail.imdbVotes.replace(/,/g, ''));
-    console.log(imdbVotes);
+
     const awards = parseInt(movieDetail.Awards.split(' ').reduce((count, word) => {
         const value = parseInt(word);
         if(isNaN(value)){
